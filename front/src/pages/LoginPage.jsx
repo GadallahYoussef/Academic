@@ -11,15 +11,13 @@ const LoginPage = () => {
     const [password, setPassword] = useState('')
     const [emptyUsername, setEmptyUsername] = useState(false)
     const [emptyPassword, setEmptyPassword] = useState(false)
+    const navigate = useNavigate();
     const handleLogin = async (e) => {
         try {
             const response = await axios.post("http://localhost/academic/login.php", { username, password });
             console.log(response);
             if (response.data.status === 'success') {
-                const navigate = useNavigate();
-                useEffect(() => {
                     navigate('/student')
-                },[])
             } else {
                 alert(response.data.message);
             }

@@ -6,7 +6,7 @@ const Schedule = () => {
         <div className='w-full h-full flex px-4'>
             <div className='w-2/3 h-full flex flex-col justify-center gap-10  max-lg:w-full max-lg:justify-start max-lg:mt-[30px] md:justify-center'>
                 <span class="before:w-[240px] before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#054bb4] relative inline-block">
-                    <span class="relative text-white font-bold text-[40px] pl-4">July, 2024</span>
+                    <span className="relative text-white font-bold text-[40px] pl-4">July, 2024</span>
                 </span>
                 <div>
                     <div className='flex gap-6 items-center'>

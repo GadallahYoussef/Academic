@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
 import { useState } from 'react';
 import Schedule from '../components/Schedule';
+import axios from 'axios';
 
 
 const StudentDashboard = () => {
 
     const [toggleMenu, setToggleMenu] = useState(false)
+
+    useEffect(()=>{
+        const response = axios.post("http://localhost/academic/index.php")
+        response.then((data => console.log(data)))
+
+    }, [])
 
     return (
         <div className='w-full flex justify-center'>

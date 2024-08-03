@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (password_verify($password, $hashed_password) and $status == 'active') {
 
-<<<<<<< HEAD
             // $multi_sign = $conn->prepare('SELECT session_id FROM stdssn WHERE user_id = ? AND session_id is not null');
             // $multi_sign->bind_param('s', $id);
             // $multi_sign->execute();
@@ -47,28 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //     echo json_encode(['status' => 'error', 'message' => 'Login unsuccessful']);
             // }
             // $multi_sign->close();
-=======
-            $multi_sign = $conn->prepare('SELECT session_id FROM stdssn WHERE user_id = ? AND session_id is not null');
-            $multi_sign->bind_param('s', $id);
-            $multi_sign->execute();
-            $multi_sign->store_result();
-            if ($multi_sign->num_rows > 0) {
-                $_SESSION['user_id'] = $id;
-                $_SESSION['name'] = $name;
-                $_SESSION['grade'] = $grade;
-                $_SESSION['section'] = $section;
-                setcookie('PHPSESSID', session_id(), time() + 10713600, "/", "", true, true); // Secure and HttpOnly
-                session_regenerate_id(true); // Regenerates the session ID and deletes the old session
-                $multi_sign = $conn->prepare("UPDATE stdssn SET session_id = ? where user_id = ?");
-                $session_id = session_id();
-                $multi_sign->bind_param('ss', $session_id, $_SESSION['user_id']);
-                $multi_sign->execute();
-                echo json_encode(['status' => 'success', 'message' => 'Login successful']);
-            } else {
-                echo json_encode(['status' => 'error', 'message' => 'Login unsuccessful']);
-            }
-            $multi_sign->close();
->>>>>>> d796a73 (s)
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Invalid credentials']);
         }
