@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $multi_sign->bind_param('s', $id);
             $multi_sign->execute();
             $multi_sign->store_result();
-            if ($multi_sign->num_rows == 0) {
+            if ($multi_sign->num_rows > 0) {
                 $_SESSION['user_id'] = $id;
                 $_SESSION['name'] = $name;
                 $_SESSION['grade'] = $grade;
