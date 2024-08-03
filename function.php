@@ -8,7 +8,8 @@ function check_login($conn)
 
         $result = mysqli_query($conn, $query);
         if ($result && mysqli_num_rows($result) > 0) {
-            $_SESSION['status'] = mysqli_fetch_assoc($result)['status'];
+            $status = mysqli_fetch_assoc($result);
+            $_SESSION['status'] = $status['status'];
             mysqli_close($conn);
             return true;
         } else {
