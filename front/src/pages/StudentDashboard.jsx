@@ -11,7 +11,7 @@ const StudentDashboard = () => {
     const [toggleMenu, setToggleMenu] = useState(false)
 
     useEffect(()=>{
-        const response = axios.post("http://localhost/academia/index.php")
+        const response = axios.post("http://localhost/academic/index.php")
         response.then((data => console.log(data)))
 
     }, [])
