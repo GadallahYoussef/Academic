@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom PDF Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <style>
+      /* Custom styles to hide download controls */
+      #pdfViewer canvas {
+        display: block;
+        margin: auto;
+      }
+      /* Prevent selection and copying */
+      #pdfViewer {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="pdfViewer"
+      style="width: 100%; height: 600px; border: 1px solid #ccc"
+    ></div>
+
+    <script>
+      // PDF.js code to render the PDF
+      var url = "./Bug_Bounty_Hunting.pdf"; // Replace with your PDF URL
+
+      var loadingTask = pdfjsLib.getDocument(url);
+      loadingTask.promise.then(function (pdf) {
+        pdf.getPage(1).then(function (page) {
+          var scale = 1.5;
+          var viewport = page.getViewport({ scale: scale });
+
+          var canvas = document.createElement("canvas");
+          var context = canvas.getContext("2d");
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+
+          document.getElementById("pdfViewer").appendChild(canvas);
+
+          var renderContext = {
+            canvasContext: context,
+            viewport: viewport,
+          };
+          page.render(renderContext);
+        });
+      });
+
+      // Disable right-click
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+
+      // Disable keyboard shortcuts for saving
+      document.addEventListener("keydown", function (e) {
+        if (e.ctrlKey && (e.key === "s" || e.key === "S")) {
+          e.preventDefault();
+        }
+        if (e.metaKey && (e.key === "s" || e.key === "S")) {
+          e.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html>
