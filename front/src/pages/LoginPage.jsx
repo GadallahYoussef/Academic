@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import  image1  from '../assets/image-1.jpeg'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
 
@@ -9,12 +10,13 @@ const LoginPage = () => {
     const [password, setPassword] = useState('')
     const [emptyUsername, setEmptyUsername] = useState(false)
     const [emptyPassword, setEmptyPassword] = useState(false)
+    const navigate = useNavigate()
     const handleLogin = async (e) => {
         try {
             const response = await axios.post("http://localhost/academia/login.php", { username, password });
             console.log(response);
             if (response.data.status === 'success') {
-                setUser({ name: response.data.name, grade: response.data.grade });
+                navigate('/student')
             } else {
                 alert(response.data.message);
             }
@@ -33,6 +35,8 @@ const LoginPage = () => {
                     <form  className='flex flex-col mb-6'
                         onSubmit={(e) => {
                             e.preventDefault()
+                            setEmptyUsername(false)
+                            setEmptyPassword(false)
                             if(username == '' || password == ''){
                                 username == '' && setEmptyUsername(true)
                                 password == '' && setEmptyPassword(true)
