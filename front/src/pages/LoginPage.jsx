@@ -11,7 +11,7 @@ const LoginPage = () => {
     const [emptyPassword, setEmptyPassword] = useState(false)
     const handleLogin = async (e) => {
         try {
-            const response = await axios.post("http://localhost/academic/login.php", { username, password });
+            const response = await axios.post("http://localhost/academia/login.php", { username, password });
             console.log(response);
             if (response.data.status === 'success') {
                 setUser({ name: response.data.name, grade: response.data.grade });
