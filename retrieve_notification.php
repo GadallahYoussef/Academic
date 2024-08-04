@@ -4,8 +4,9 @@ include('connection.php');
 include('function.php');
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Access-Control-Allow-Credentials: true");
 $authenticated = false;
 $continue = check_login($conn);
 if ($continue and $_SESSION['status'] === 'active') {

@@ -3,13 +3,11 @@ session_start();
 include('connection.php');
 include('function.php');
 header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
 session_get_cookie_params();
-// $data = json_decode(file_get_contents('php://input'), true);
-// $_SESSION['user_id'] = $data['creds'];
 $authenticated = false;
 $continue = check_login($conn);
 if ($continue) {
@@ -35,10 +33,14 @@ if ($authenticated) {
         echo json_encode([
             'status' => 'OK', 'authenticated' => $authenticated, 'student_name' => $_SESSION['name'], 'student_grade' => $_SESSION['grade'], 'schedule' => [$schedule_day, $schedule_start, $schedule_end]
         ]);
+        exit;
     } else {
-        echo json_encode(['status' => 'error', 'authenticated' => $authenticated, 'credentials' => $_SESSION]);
+        echo json_encode(['status' => 'error', 'authenticated' => $authenticated]);
+        exit;
     }
-    // $schedule->close();
+    $schedule->close();
 } else {
-    echo json_encode(['status' => 'error', 'authenticated' => $authenticated, 'credentials' => $_SESSION]);
+    echo json_encode(['status' => 'error', 'authenticated' => $authenticated]);
+    $conn->close();
+    exit;
 }

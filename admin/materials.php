@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('../connection.php');
-include('admin_connection.php');
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
@@ -43,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["file"])) {
 
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
             // Save file metadata to the database
-            $material = $conn->prepare("INSERT INTO materials (grade, section, type, description, url) VALUES (?, ?, ?, ?)");
+            $material = $conn->prepare("INSERT INTO materials (grade, section, type, description, url) VALUES (?, ?, ?, ?, ?)");
             $material->bind_param("issss", $grade, $section, $material_type, $description, $target_file);
 
             if ($material->execute()) {
