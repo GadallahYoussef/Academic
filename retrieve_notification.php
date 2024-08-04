@@ -38,7 +38,7 @@ if ($authenticated) {
             $conn->close();
             echo json_encode([
                 'status' => 'OK', 'authenticated' => $authenticated, 'found' => true, 'notification' => $message
-            ]);
+            ], JSON_UNESCAPED_UNICODE);
             exit;
         } else {
             $notify->close();

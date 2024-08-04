@@ -58,7 +58,7 @@ if ($_SESSION['REQUEST_METHOD'] == 'POST') {
         } else {
             $remove->close();
         }
-        $table_name = 'G' . "$grade" . 'S' . "$section" . "-attendence";
+        $table_name = 'G' . "$grade" . 'S' . "$section" . "_attendence";
         $remove = $conn->prepare("DELETE FROM $table_name WHERE user_id = ?");
         $remove->bind_param('s', $user_id);
         if (!$remove->execute()) {

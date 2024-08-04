@@ -6,7 +6,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents("php://input", true));
+    $data = json_decode(file_get_contents("php://input"), true);
     $grade = $data['grade'];
     $section = $data['section'];
     if (!is_numeric($grade) || !preg_match('/^[a-zA-Z0-9_]+$/', $section)) {
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn->close();
         exit;
     }
-    $table_name = 'G' . "$grade" . 'S' . "$section" . "-attendence";
+    $table_name = 'G' . "$grade" . 'S' . "$section" . "_attendence";
     $conn->begin_transaction();
     try {
         $remove = $conn->prepare("DROP TABLE IF EXISTS $table_name");

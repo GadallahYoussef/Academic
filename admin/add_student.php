@@ -91,19 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $add_to_session->bind_param('s', $student_id);
                         if ($add_to_session->execute()) {
                             $add_to_session->close();
-                            $table_name = 'G' . "$grade" . 'S' . "$section" . "-attendence";
-                            $add_to_grade = $conn->prepare("INSERT INTO $table_name (user_id, student_name, student_status) VALUES (?, ?, ?)");
-                            $add_to_grade->bind_param('sss', $student_id, $name, $student_status);
-                            if ($add_to_grade->execute()) {
-                                $add_to_grade->close();
-                                $conn->commit();
-                                $admin_conn->commit();
-                                echo json_encode(['status' => 'OK', 'message' => 'added successfully']);
-                                exit;
-                            } else {
-                                $add_to_grade->close();
-                                throw new Exception('grade database error');
-                            }
                         } else {
                             $add_to_session->close();
                             throw new Exception('sessions database error');

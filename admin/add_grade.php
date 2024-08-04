@@ -10,7 +10,7 @@ function closeConnections($conn)
     $conn->close();
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents("php://input", true));
+    $data = json_decode(file_get_contents("php://input"), true);
     $grade = $data['grade'];
     $section = $data['section'];
     if (!is_numeric($grade) || !preg_match('/^[a-zA-Z0-9_]+$/', $section)) {
@@ -32,9 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             user_id VARCHAR(40) NOT NULL,
             student_name VARCHAR(100) NOT NULL,
             student_status VARCHAR(10) NOT NULL,
-            session_day VARCHAR(255) NOT NULL,
-            day_value INT(10) NOT NULL,
-            attendence TINYINT(1) NOT NULLs
+            session_day Date DEFAULT CURRENT_TIMESTAMP NOT NULL,
+            attendence TINYINT(1) NOT NULL
             )");
             if ($table->execute()) {
                 $table->close();

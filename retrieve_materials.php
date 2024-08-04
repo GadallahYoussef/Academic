@@ -10,12 +10,12 @@ header("Access-Control-Allow-Credentials: true");
 session_get_cookie_params();
 $authenticated = false;
 $continue = check_login($conn);
-if ($continue and $_SESSION['status'] === 'active') {
-    $authenticated = true;
-}
 function is_arabic($text)
 {
     return preg_match('/\p{Arabic}/u', $text);
+}
+if ($continue and $_SESSION['status'] === 'active') {
+    $authenticated = true;
 }
 if ($authenticated) {
     $material = $conn->prepare("SELECT id, type, description, url FROM materials WHERE (grade = ? and section = ?) or (grade = ? and section = 'all')");
@@ -28,10 +28,15 @@ if ($authenticated) {
             while ($material->fetch()) {
                 $student_material[$id] = [];
                 $student_material[$id]['type'] = $type;
-                $student_material[$id]['caption'] = $description;
+                if (is_arabic($description)) {
+                    $rtl_description = "\u{202B}" . $description . "\u{202C}";
+                    $student_material[$id]['caption'] = $rtl_description;
+                } else {
+                    $student_material[$id]['caption'] = $description;
+                }
                 $student_material[$id]['path'] = $url;
             }
-            echo json_encode(['status' => 'OK', 'authenticated' => $authenticated, 'found' => true, 'matrials' => $student_material]);
+            echo json_encode(['status' => 'OK', 'authenticated' => $authenticated, 'found' => true, 'matrials' => $student_material], JSON_UNESCAPED_UNICODE);
             $material->close();
             $conn->close();
             exit;
