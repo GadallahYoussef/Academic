@@ -10,14 +10,14 @@ function check_login($conn)
         if ($result && mysqli_num_rows($result) > 0) {
             $status = mysqli_fetch_assoc($result);
             $_SESSION['status'] = $status['status'];
-            mysqli_close($conn);
+
             return true;
         } else {
-            mysqli_close($conn);
+
             return false;
         }
     } else {
-        mysqli_close($conn);
+
         return false;
     }
 }

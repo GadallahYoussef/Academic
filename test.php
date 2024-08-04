@@ -1,15 +1,7 @@
 <?php
-include('connection.php');
-$uid = "asdgfsfdgdfg";
-$query = "select status from stdata where user_id = '$uid' limit 1";
-$result = mysqli_query($conn, $query);
-if ($result && mysqli_num_rows($result) > 0) {
-    $status = mysqli_fetch_assoc($result);
-    $status = $status['status'];
-    mysqli_close($conn);
-    echo true;
-} else {
-    mysqli_close($conn);
-    echo false;
-}
-echo $_SESSION['grade'];
+session_start([
+    'cookie_lifetime' => 10713600,
+    'cookie_secure' => true,
+    'cookie_httponly' => true,
+    'cookie_samesite' => 'None'
+]);

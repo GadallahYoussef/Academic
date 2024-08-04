@@ -2,10 +2,10 @@
 session_start();
 include('connection.php');
 header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
-
+header("Access-Control-Allow-Credentials: true");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents("php://input"), true);
     $username = $data['username'];
@@ -29,14 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // $multi_sign = $conn->prepare('SELECT session_id FROM stdssn WHERE user_id = ? AND session_id is not null');
             // $multi_sign->bind_param('s', $id);
             // $multi_sign->execute();
-            // $multi_sign->store_result();
+            // $multi_sign->store_result(); 
             // if ($multi_sign->num_rows > 0) {
             $_SESSION['user_id'] = $id;
             $_SESSION['name'] = $name;
             $_SESSION['grade'] = $grade;
             $_SESSION['section'] = $section;
+            $_SESSION['status'] = $status;
             setcookie('PHPSESSID', session_id(), time() + 10713600, "/", "", true, true); // Secure and HttpOnly
-            session_regenerate_id(true); // Regenerates the session ID and deletes the old session
+            // session_regenerate_id(true); // Regenerates the session ID and deletes the old session
             // $multi_sign = $conn->prepare("UPDATE stdssn SET session_id = ? where user_id = ?");
             // $session_id = session_id();
             // $multi_sign->bind_param('ss', $session_id, $_SESSION['user_id']);
@@ -56,4 +57,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
 }
-$conn->close();
+// $conn->close();
