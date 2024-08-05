@@ -18,7 +18,7 @@ const Schedule = ({name, schedule, grade}) => {
                 <div className='flex flex-col gap-3'>
                     {
                         schedule.map((item, index) => (
-                            <div className='flex gap-3 items-center text-lg font-medium'>
+                            <div key={index} className='flex gap-3 items-center text-lg font-medium'>
                             <VscDebugBreakpointLog className='text-[#658cc2]' />
                             <p>{item[0]} {item[1]}PM - {item[2]}PM </p>
                             </div>
@@ -34,7 +34,7 @@ const Schedule = ({name, schedule, grade}) => {
                 <div className='flex flex-col gap-3'>
                     {
                         schedule.map((item, index) => (
-                            <div className='flex gap-3 items-center text-lg font-medium'>
+                            <div key={index} className='flex gap-3 items-center text-lg font-medium'>
                             <VscDebugBreakpointLog className='text-[#658cc2]' />
                             <p>{item[0]} {item[1]}PM - {item[2]}PM </p>
                             </div>
