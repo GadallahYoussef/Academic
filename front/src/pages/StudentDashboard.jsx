@@ -35,15 +35,15 @@ const StudentDashboard = () => {
     }
 
     return (
-        <div className='w-full flex justify-center '>
+        <div className='w-screen flex justify-center '>
             <Menu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
             <div className='flex flex-col items-center'>
                 <div className='fixed w-full z-50  bg-white '>
                     <Navbar toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} handleLogOut={handleLogOut}/>
                 </div>
                 <div id='test1' className='h-screen bg-[#658cc2]'>
-                    <div className='w-full h-[60px] bg-white'></div>
-                    <Schedule/>
+                    <div className='w-screen h-[60px] bg-white'></div>
+                    <Schedule name={name} schedule={schedule}/>
                 </div>
                 <div id='test2'>
                     dfgd
