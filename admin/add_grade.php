@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $verify->close();
             $table = $conn->prepare("CREATE TABLE IF NOT EXISTS $table_name (
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            user_id VARCHAR(40) NOT NULL,
             student_name VARCHAR(100) NOT NULL,
             session_day Date DEFAULT CURRENT_TIMESTAMP NOT NULL,
             attendence TINYINT(1) NOT NULL
