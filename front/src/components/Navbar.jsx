@@ -4,10 +4,11 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { HashLink } from 'react-router-hash-link';
 
-const Navbar = ({toggleMenu, setToggleMenu}) => {
+const Navbar = ({toggleMenu, setToggleMenu, handleLogOut}) => {
 
     return (
-        <div className='h-[60px] flex items-center p-4 justify-between bg-white'>
+        <div className='w-full flex justify-center'>
+        <div className='h-[60px] flex items-center p-4 justify-between container'>
             <div className='flex gap-10 items-center'>
                 <div className='flex items-center gap-5'>
                     <div className='md:hidden'>
@@ -28,12 +29,15 @@ const Navbar = ({toggleMenu, setToggleMenu}) => {
             </div>
             <div className='flex gap-3  items-center'>
                 <IoMdNotificationsOutline size={24} className='cursor-pointer' />
-                <button className='bg-[#658cc2] ml-5 max-md:ml-1 py-1 px-3 rounded-md text-white flex gap-2 items-center'>
+                <button className='bg-[#658cc2] ml-5 max-md:ml-1 py-1 px-3 rounded-md text-white flex gap-2 items-center'
+                    onClick={() => handleLogOut()}
+                    >
                     <LuLogOut />
                     <span className='max-sm:hidden'>Logout</span>
                 </button>
             </div>
         </div>
+                    </div>
     )
 }
 
