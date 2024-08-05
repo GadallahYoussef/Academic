@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Schedule from '../components/Schedule';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Materials from '../components/Materials';
 
 
 const StudentDashboard = () => {
@@ -18,7 +19,6 @@ const StudentDashboard = () => {
     useEffect(()=>{
         const response = axios.post("http://localhost/academic/index.php",{}, {withCredentials: true})
         .then((res) => {
-            console.log(res)
             if(res.data.authenticated == false){
                 navigate('/login')
             }
@@ -26,7 +26,6 @@ const StudentDashboard = () => {
                 setName(res.data['student_name'])
                 setGrade(res.data['student_grade'])
                 setSchedule(res.data['schedule'])
-                console.log([res.data['schedule']])
             }
         })
     }, [])
@@ -46,8 +45,8 @@ const StudentDashboard = () => {
                     <div className='w-screen h-[60px] bg-white'></div>
                     <Schedule name={name} schedule={schedule} grade={grade}/>
                 </div>
-                <div id='test2'>
-                    dfgd
+                <div id='test2' className='w-full min-h-screen bg-[#658cc2] flex justify-center'>
+                    <Materials/>
                 </div>
                 <div id='test3'>
                     dfgd
