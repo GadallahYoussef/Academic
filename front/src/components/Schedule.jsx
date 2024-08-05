@@ -1,11 +1,11 @@
 import React from 'react'
 import image2 from '../assets/image-2.jpg'
-import image3 from '../assets/image-3.jpg'
+import image5 from '../assets/image-5.jpg'
 const Schedule = () => {
     return (
         <div className='w-full h-full flex px-4'>
-            <div className='w-2/3 h-full flex flex-col justify-center gap-10  max-lg:w-full max-lg:justify-start max-lg:mt-[30px] md:justify-center'>
-                <span class="before:w-[240px] before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#054bb4] relative inline-block">
+            <div className='w-2/3 h-full flex flex-col justify-center gap-10  max-lg:w-full max-lg:justify-start  md:justify-center'>
+                <span class="before:w-fil before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#054bb4] relative inline-block">
                     <span className="relative text-white font-bold text-[40px] pl-4">July, 2024</span>
                 </span>
                 <div>
@@ -30,10 +30,8 @@ const Schedule = () => {
                     </div>
                 </div>
             </div>
-            <div className='w-1/2 h-full relative flex items-center mr-[20px] max-lg:hidden'>
-                <div className='before:w-full before:h-[365px] before:left-[-10%] before:bottom-[20%] before:z-0 before:border-4 before:border-[#054bb4] before:absolute'></div>
-                <div className='before:w-full before:h-[365px] before:right-[-10%] before:top-[20%] before:z-0 before:border-4 before:border-[#054bb4] before:absolute'></div>
-                <img src={image3} alt="" className='w-full z-50' />
+            <div className='w-1/4 relative flex items-center mr-[20px] max-lg:hidden'>
+                <img src={image5} alt="" className='w-full z-50' />
             </div>
             <div className='w-1/2 h-full relative items-center mr-[20px] lg:hidden md:flex max-md:hidden'>
                 <div className='before:w-full before:h-[365px] before:left-[-10%] before:bottom-[20%] before:z-0 before:border-4 before:border-[#054bb4] before:absolute'></div>
