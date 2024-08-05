@@ -29,10 +29,9 @@ if ($authenticated) {
             while ($notify->fetch()) {
                 if (is_arabic($notification)) {
                     $rtl_notification = "\u{202B}" . $notification . "\u{202C}";
-                    $message[$creation_time] = $rtl_notification;
-                } else {
-                    $message[$creation_time] = $notification;
+                    $notification = $rtl_notification;
                 }
+                $message[] = array('time_created' => $creation_time, 'body' => $notification);
             }
             $notify->close();
             $conn->close();

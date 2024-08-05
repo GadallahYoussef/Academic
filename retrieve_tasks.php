@@ -21,28 +21,23 @@ if ($continue and $_SESSION['status'] === 'active') {
 
 if ($authenticated) {
     $current = time();
-    $tasks = $conn->prepare("SELECT id, type, task, creation FROM tasks WHERE ((grade = ? and section = ?) OR (grade = ? and section = 'all'))and (due > ?) ORDER BY creation DESC");
+    $tasks = $conn->prepare("SELECT type, task, creation FROM tasks WHERE ((grade = ? and section = ?) OR (grade = ? and section = 'all'))and (due > ?) ORDER BY creation DESC");
     $tasks->bind_param('isii', $_SESSION['grade'], $_SESSION['section'], $_SESSION['grade'], $current);
     if ($tasks->execute()) {
         $tasks->store_result();
-        $tasks->bind_result($id, $type, $task, $creation);
+        $tasks->bind_result($type, $task, $creation);
         if ($tasks->num_rows > 0) {
             $student_task = [];
             while ($tasks->fetch()) {
-                $student_task[$id] = [];
                 if (is_arabic($type)) {
                     $rtl_type = "\u{202B}" . $type . "\u{202C}";
-                    $student_task[$id]['type'] = $rtl_type;
-                } else {
-                    $student_task[$id]['type'] = $type;
+                    $type = $rtl_type;
                 }
                 if (is_arabic($task)) {
                     $rtl_task = "\u{202B}" . $task . "\u{202C}";
-                    $student_task[$id]['task'] = $rtl_task;
-                } else {
-                    $student_task[$id]['task'] = $task;
+                    $task = $rtl_task;
                 }
-                $student_task[$id]['creation'] = $creation;
+                $student_task[] = array('category' => $type, 'task' => $task, 'time_created' => $creation);
             }
             echo json_encode(['status' => 'OK', 'authenticated' => $authenticated, 'found' => true, 'tasks' => $student_task], JSON_UNESCAPED_UNICODE);
             $tasks->close();
