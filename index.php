@@ -16,22 +16,21 @@ if ($continue) {
     }
 }
 if ($authenticated) {
-    $schedule = $conn->prepare("SELECT day, start, end from schedule WHERE grade = ? and section = ?");
+    $schedule = $conn->prepare("SELECT id, day, start, end from schedule WHERE grade = ? and section = ?");
     $schedule->bind_param('is', $_SESSION['grade'], $_SESSION['section']);
     $schedule->execute();
     $schedule->store_result();
     if ($schedule->num_rows > 0) {
         $schedule_day = [];
-        $schedule_start = [];
-        $schedule_end = [];
-        $schedule->bind_result($day, $start, $end);
+        $schedule->bind_result($id, $day, $start, $end);
         while ($schedule->fetch()) {
-            $schedule_day[] = $day;
-            $schedule_start[] = $start;
-            $schedule_end[] =  $end;
+            $schedule_day[$id] = [];
+            $schedule_day[$id][] = $day;
+            $schedule_day[$id][] = $start;
+            $schedule_day[$id][] = $end;
         }
         echo json_encode([
-            'status' => 'OK', 'authenticated' => $authenticated, 'student_name' => $_SESSION['name'], 'student_grade' => $_SESSION['grade'], 'schedule' => [$schedule_day, $schedule_start, $schedule_end]
+            'status' => 'OK', 'authenticated' => $authenticated, 'student_name' => $_SESSION['name'], 'student_grade' => $_SESSION['grade'], 'schedule' => $schedule_day
         ]);
         exit;
     } else {

@@ -32,24 +32,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $table_name = 'G' . "$grade" . 'S' . "$section" . "_attendence";
     $conn->begin_transaction();
     try {
-        $deactivate = $conn->prepare("UPDATE stdata SET status='inactive' WHERE student_name=? and grade=? and section=?");
-        $deactivate->bind_param('sis', $name, $grade, $section);
-        if ($deactivate->execute()) {
-            $deactivate->close();
+        $activate = $conn->prepare("UPDATE stdata SET status='active' WHERE student_name=? and grade=? and section=? and status!='active'");
+        $activate->bind_param('sis', $name, $grade, $section);
+        if ($activate->execute()) {
+            $activate->close();
         } else {
-            $deactivate->close();
+            $activate->close();
             throw new Exception("failed to update student data");
         }
-        $deactivate = $conn->prepare("UPDATE $table_name SET student_status='inactive' WHERE student_name=?");
-        $deactivate->bind_param('s', $name);
-        if ($deactivate->execute()) {
-            $deactivate->close();
+        $activate = $conn->prepare("UPDATE $table_name SET student_status='active' WHERE student_name=? and student_status!='active'");
+        $activate->bind_param('s', $name);
+        if ($activate->execute()) {
+            $activate->close();
             $conn->commit();
-            echo json_encode(['status' => 'OK', 'message' => 'deactivated successfully']);
+            echo json_encode(['status' => 'OK', 'message' => 'activated successfully']);
             exit;
         } else {
-            $deactivate->close();
-            throw new Exception("failed to deactivate from his section");
+            $activate->close();
+            throw new Exception("failed to activate in his section");
         }
     } catch (Exception $e) {
         $conn->rollback();
