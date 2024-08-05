@@ -11,7 +11,7 @@ const Schedule = ({name, schedule}) => {
                 <div>
                     {
                         schedule.map((item, index) => (
-                            <span>{item[0]} </span>
+                            <p>{item[0]} {item[1]}PM - {item[2]}PM </p>
                         ))
                     }
                 </div>
