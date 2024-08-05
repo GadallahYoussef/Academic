@@ -26,6 +26,7 @@ const StudentDashboard = () => {
                 setName(res.data['student_name'])
                 setGrade(res.data['student_grade'])
                 setSchedule(res.data['schedule'])
+                console.log([res.data['schedule']])
             }
         })
     }, [])
@@ -41,9 +42,9 @@ const StudentDashboard = () => {
                 <div className='fixed w-full z-50  bg-white '>
                     <Navbar toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} handleLogOut={handleLogOut}/>
                 </div>
-                <div id='test1' className='h-screen bg-[#658cc2]'>
+                <div id='test1' className='h-screen bg-white'>
                     <div className='w-screen h-[60px] bg-white'></div>
-                    <Schedule name={name} schedule={schedule}/>
+                    <Schedule name={name} schedule={schedule} grade={grade}/>
                 </div>
                 <div id='test2'>
                     dfgd
