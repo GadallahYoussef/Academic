@@ -24,10 +24,7 @@ if ($authenticated) {
         $schedule_day = [];
         $schedule->bind_result($id, $day, $start, $end);
         while ($schedule->fetch()) {
-            $schedule_day[$id] = [];
-            $schedule_day[$id][] = $day;
-            $schedule_day[$id][] = $start;
-            $schedule_day[$id][] = $end;
+            $schedule_day[] = array($day, $start, $end);
         }
         echo json_encode([
             'status' => 'OK', 'authenticated' => $authenticated, 'student_name' => $_SESSION['name'], 'student_grade' => $_SESSION['grade'], 'schedule' => $schedule_day
