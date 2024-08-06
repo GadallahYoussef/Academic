@@ -7,7 +7,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Materials from '../components/Materials';
 import Tasks from '../components/Tasks';
-import Attendance from '../components/Attendance';
 
 
 const StudentDashboard = () => {
@@ -46,12 +45,11 @@ const StudentDashboard = () => {
                 <div id='test1' className='h-screen bg-white'>
                     <div className='w-screen h-[60px] bg-white'></div>
                     <Schedule name={name} schedule={schedule} grade={grade}/>
-                    <Attendance/>
                 </div>
                 <div id='test2' className='w-full min-h-screen h-fit bg-[#658cc2] flex justify-center'>
                     <Materials/>
                 </div>
-                <div id='test3' className='w-full min-h-screen h-fit bg-[#658cc2] flex justify-center'>
+                <div id='test3' className='w-full h-screen flex justify-center'>
                     <Tasks/>
                 </div>
                 <div id='test4'>

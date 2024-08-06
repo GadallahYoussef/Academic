@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
-import axios from 'axios';
-import image2 from '../assets/image-2.jpg'
 import image5 from '../assets/image-5.jpg'
 import { BsCalendarDateFill } from "react-icons/bs";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
-
+import Attendance from './Attendance';
 
 const Schedule = ({ name, schedule, grade }) => {
 
@@ -28,9 +26,13 @@ const Schedule = ({ name, schedule, grade }) => {
                         }
                     </div>
                 </div>
+
+                <Attendance/>
+
+
             </div>
             <div className='w-2/5 relative'>
-                <img src={image5} alt="" className='w-full landingImage' />
+                <img src={image5} alt="" className='w-full landingImage object-cover object-top' />
                 <div className='absolute bg-[#054bb4] w-[60px] h-[250px] top-0 left-[-30px] rounded-b-full text-white'>
                 </div>
                 <div className='-rotate-90 w-[150px] h-[100px] absolute top-14 -left-12'>
