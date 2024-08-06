@@ -18,8 +18,11 @@ function checkMonth($session_day)
     $separated_date = explode('-', $session_day);
     $month = $separated_date[1];
     $month = (int)($month);
-    $current = (int)(date('m'));
-    return $month == $current;
+    $current_month = (int)(date('m'));
+    $year = $separated_date[0];
+    $year = (int)($year);
+    $current_year = (int)(date('Y'));
+    return ($month == $current_month) and ($year == $current_year);
 }
 if ($authenticated) {
     $grade = $_SESSION['grade'];
@@ -37,12 +40,12 @@ if ($authenticated) {
                     $student_attendance[$session_date] = $user_state;
                 }
             }
-            echo json_encode(['status' => 'OK', 'authenticated' => $authenticated, 'found' => true, 'month' => date('F'), 'attendance' => $student_attendance]);
+            echo json_encode(['status' => 'OK', 'authenticated' => $authenticated, 'found' => true, 'month' => date('F') . ', ' . date('Y'), 'attendance' => $student_attendance]);
             $attendance->close();
             $conn->close();
             exit;
         } else {
-            echo json_encode(['status' => 'OK', 'authenticated' => $authenticated, 'found' => false, 'month' => date('F')]);
+            echo json_encode(['status' => 'OK', 'authenticated' => $authenticated, 'found' => false, 'month' => date('F') . ', ' . date('Y')]);
             $attendance->close();
             $conn->close();
             exit;
