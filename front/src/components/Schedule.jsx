@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import axios from 'axios';
 import image2 from '../assets/image-2.jpg'
 import image5 from '../assets/image-5.jpg'
 import { BsCalendarDateFill } from "react-icons/bs";
@@ -6,6 +7,13 @@ import { VscDebugBreakpointLog } from "react-icons/vsc";
 
 
 const Schedule = ({name, schedule, grade}) => {
+
+    // useEffect(() => {
+    //     const response = axios.post("http://localhost/academic/retrieve_attendence.php",{}, {withCredentials: true})
+    //     .then((res) => (console.log(res)))
+
+    // }, [])
+
     return (
         <div className='w-full h-full flex'>
             <div className='w-3/5 flex flex-col justify-center lg:pl-[70px] md: pl-[40px] gap-7'>

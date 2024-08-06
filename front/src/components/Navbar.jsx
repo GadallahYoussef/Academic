@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { LuLogOut } from "react-icons/lu";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { HashLink } from 'react-router-hash-link';
+import Notifications from './Notifications';
 
 const Navbar = ({toggleMenu, setToggleMenu, handleLogOut}) => {
+
 
     return (
         <div className='w-full flex justify-center'>
@@ -27,8 +29,9 @@ const Navbar = ({toggleMenu, setToggleMenu, handleLogOut}) => {
                     <HashLink smooth to={'#test4'}>Quizes</HashLink>
                 </div>
             </div>
-            <div className='flex gap-3  items-center'>
+            <div className='flex gap-3  items-center relative'>
                 <IoMdNotificationsOutline size={24} className='cursor-pointer' />
+                <Notifications/>
                 <button className='bg-[#658cc2] ml-5 max-md:ml-1 py-1 px-3 rounded-md text-white flex gap-2 items-center'
                     onClick={() => handleLogOut()}
                     >
