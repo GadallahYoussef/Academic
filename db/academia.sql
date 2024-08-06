@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2024 at 10:19 AM
+-- Generation Time: Aug 06, 2024 at 10:06 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,7 +38,30 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`id`, `grade`, `section`) VALUES
-(1, 1, 'a');
+(6, 1, 'a');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `g1sa_attendance`
+--
+
+CREATE TABLE `g1sa_attendance` (
+  `id` int(6) UNSIGNED NOT NULL,
+  `student_name` varchar(100) NOT NULL,
+  `session_day` date NOT NULL DEFAULT current_timestamp(),
+  `attendance` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `g1sa_attendance`
+--
+
+INSERT INTO `g1sa_attendance` (`id`, `student_name`, `session_day`, `attendance`) VALUES
+(1, 'Seif Eldeen Sameh', '2024-08-06', 1),
+(2, 'Seif Eldeen Sameh', '2024-08-05', 0),
+(3, 'Seif Eldeen Sameh', '2024-07-11', 1),
+(4, 'Seif Eldeen Sameh', '2017-08-06', 1);
 
 -- --------------------------------------------------------
 
@@ -54,6 +77,13 @@ CREATE TABLE `materials` (
   `description` text NOT NULL,
   `url` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `materials`
+--
+
+INSERT INTO `materials` (`id`, `grade`, `section`, `type`, `description`, `url`) VALUES
+(6, 1, 'a', 'Image', 'second unit of the course', 'student/materials/1/WhatsApp Image 2024-07-27 at 16.05.45_7e9781f2.jpg');
 
 -- --------------------------------------------------------
 
@@ -132,7 +162,8 @@ CREATE TABLE `stdata` (
 --
 
 INSERT INTO `stdata` (`id`, `user_id`, `student_name`, `username`, `password`, `grade`, `section`, `status`, `marks`) VALUES
-(11, 'asdgfsfdgdfg', 'Seif Eldeen Sameh', 'seif_sameh', '$2y$10$561s.qdBHuD0nf3O0cyLbe70yljuEo.gHsf0wt9sMG1H7Y/I4ygkO', 1, 'a', 'active', 1);
+(11, 'asdgfsfdgdfg', 'Seif Eldeen Sameh', 'seif_sameh', '$2y$10$561s.qdBHuD0nf3O0cyLbe70yljuEo.gHsf0wt9sMG1H7Y/I4ygkO', 1, 'a', 'active', 1),
+(12, '', 'Youssef Mustafa', 'youssef_mustafa', '$2y$10$C8gEZGGKvl65H2fPtl5CXue6wLcJKObXSvjmGrGlhOxulUDoxHYsS', 2, '2', 'active', NULL);
 
 -- --------------------------------------------------------
 
@@ -151,7 +182,49 @@ CREATE TABLE `stdssn` (
 --
 
 INSERT INTO `stdssn` (`id`, `user_id`, `session_id`) VALUES
-(2, 'asdgfsfdgdfg', NULL);
+(2, 'asdgfsfdgdfg', '19j04dp6o8m8vv9p4gs2tdqmgb');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tasks`
+--
+
+CREATE TABLE `tasks` (
+  `id` int(11) NOT NULL,
+  `grade` int(1) NOT NULL,
+  `section` varchar(3) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  `task` text NOT NULL,
+  `creation` timestamp NOT NULL DEFAULT current_timestamp(),
+  `due` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `grade`, `section`, `type`, `task`, `creation`, `due`) VALUES
+(1, 1, 'a', 'واجب', 'حل يا معرص', '2024-08-04 20:43:16', 1722990596),
+(2, 1, 'a', 'Vocab', 'Unit 1 lesson 3&amp;4', '2024-08-04 20:44:03', 1722990643);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test`
+--
+
+CREATE TABLE `test` (
+  `id` int(11) NOT NULL,
+  `test` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `test`
+--
+
+INSERT INTO `test` (`id`, `test`) VALUES
+(1, '2024-08-05');
 
 --
 -- Indexes for dumped tables
@@ -164,6 +237,12 @@ ALTER TABLE `classes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `grade` (`grade`),
   ADD KEY `section` (`section`);
+
+--
+-- Indexes for table `g1sa_attendance`
+--
+ALTER TABLE `g1sa_attendance`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `materials`
@@ -217,6 +296,18 @@ ALTER TABLE `stdssn`
   ADD KEY `session_id` (`session_id`);
 
 --
+-- Indexes for table `tasks`
+--
+ALTER TABLE `tasks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `test`
+--
+ALTER TABLE `test`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -224,13 +315,19 @@ ALTER TABLE `stdssn`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `g1sa_attendance`
+--
+ALTER TABLE `g1sa_attendance`
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `materials`
 --
 ALTER TABLE `materials`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -242,19 +339,31 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `stdata`
 --
 ALTER TABLE `stdata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `stdssn`
 --
 ALTER TABLE `stdssn`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tasks`
+--
+ALTER TABLE `tasks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `test`
+--
+ALTER TABLE `test`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
