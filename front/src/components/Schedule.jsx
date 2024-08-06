@@ -8,11 +8,11 @@ import { VscDebugBreakpointLog } from "react-icons/vsc";
 
 const Schedule = ({name, schedule, grade}) => {
 
-    // useEffect(() => {
-    //     const response = axios.post("http://localhost/academic/retrieve_attendence.php",{}, {withCredentials: true})
-    //     .then((res) => (console.log(res)))
+    useEffect(() => {
+        const response = axios.post("http://localhost/academic/retrieve_attendance.php",{}, {withCredentials: true})
+        .then((res) => (console.log(res)))
 
-    // }, [])
+    }, [])
 
     return (
         <div className='w-full h-full flex'>

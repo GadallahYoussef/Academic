@@ -3,11 +3,7 @@ session_start();
 include('connection.php');
 include('function.php');
 header('Content-Type: application/json');
-<<<<<<< HEAD:retrieve_attendance.php
-header("Access-Control-Allow-Origin: http://localhost:5174");
-=======
 header("Access-Control-Allow-Origin: http://localhost:5173");
->>>>>>> a7476d6 (asgasfgd):retrieve_attendence.php
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
