@@ -1,6 +1,12 @@
 <?php
 session_start();
 include('connection.php');
+include('connection.php');
+header('Content-Type: application/json');
+header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Access-Control-Allow-Credentials: true");
 $logout = $conn->prepare("UPDATE stdssn SET session_id=? WHERE user_id=?");
 $update = NULL;
 $logout->bind_param('ss', $update, $_SESSION['user_id']);
