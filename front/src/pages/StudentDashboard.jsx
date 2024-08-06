@@ -6,6 +6,7 @@ import Schedule from '../components/Schedule';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Materials from '../components/Materials';
+import Tasks from '../components/Tasks';
 
 
 const StudentDashboard = () => {
@@ -48,8 +49,8 @@ const StudentDashboard = () => {
                 <div id='test2' className='w-full min-h-screen h-fit bg-[#658cc2] flex justify-center'>
                     <Materials/>
                 </div>
-                <div id='test3'>
-                    dfgd
+                <div id='test3' className='w-full min-h-screen h-fit bg-[#658cc2] flex justify-center'>
+                    <Tasks/>
                 </div>
                 <div id='test4'>
                     dfgd

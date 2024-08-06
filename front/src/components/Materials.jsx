@@ -9,6 +9,7 @@ import { FaFileAudio } from "react-icons/fa6";
 const Materials = () => {
     const [materials, setMaterials] = useState([])
     const [found, setFound] = useState('')
+
     useEffect(() => {
         const response = axios.post("http://localhost/academic/retrieve_materials.php",{}, {withCredentials: true})
         .then((res) => (res.data))
@@ -28,8 +29,8 @@ const Materials = () => {
             {
                 found ? 
                     (
-                        materials.map((item) => (
-                            <a href={item.path} target='_blank'>
+                        materials.map((item, index) => (
+                            <a href={item.path} key={index} target='_blank'>
                             <div className='w-full h-[250px] bg-[#4a6b98] hover:bg-[#355076] rounded-md px-4 py-6 cursor-pointer flex flex-col items-center gap-6'>
                                 <div className='h-1/3 flex items-center'>
                                 {item.type == 'Image' && <IoImage size={90} className='text-white'/>}
