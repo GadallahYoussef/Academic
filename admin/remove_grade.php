@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn->close();
         exit;
     }
-    $table_name = 'G' . "$grade" . 'S' . "$section" . "_attendence";
+    $table_name = 'G' . "$grade" . 'S' . "$section" . "_attendance";
     $conn->begin_transaction();
     try {
         $remove = $conn->prepare("DROP TABLE IF EXISTS $table_name");

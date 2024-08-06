@@ -32,7 +32,7 @@ if ($authenticated) {
                 }
                 $student_material[] = array('type' => $type, 'caption' => $description, 'path' => $url);
             }
-            echo json_encode(['status' => 'OK', 'authenticated' => $authenticated, 'found' => true, 'matrials' => $student_material], JSON_UNESCAPED_UNICODE);
+            echo json_encode(['status' => 'OK', 'authenticated' => $authenticated, 'found' => true, 'materials' => $student_material], JSON_UNESCAPED_UNICODE);
             $material->close();
             $conn->close();
             exit;

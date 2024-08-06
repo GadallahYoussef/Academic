@@ -24,32 +24,32 @@ function checkMonth($session_day)
 if ($authenticated) {
     $grade = $_SESSION['grade'];
     $section = $_SESSION['section'];
-    $table_name = 'G' . "$grade" . 'S' . "$section" . "_attendence";
-    $attendence = $conn->prepare("SELECT session_day, attendence FROM $table_name WHERE student_name=?");
-    $attendence->bind_param('s', $_SESSION['name']);
-    if ($attendence->execute()) {
-        $attendence->store_result();
-        if ($attendence->num_rows > 0) {
-            $attendence->bind_result($session_date, $user_state);
-            $student_attendence = [];
-            while ($attendence->fetch()) {
+    $table_name = 'G' . "$grade" . 'S' . "$section" . "_attendance";
+    $attendance = $conn->prepare("SELECT session_day, attendance FROM $table_name WHERE student_name=?");
+    $attendance->bind_param('s', $_SESSION['name']);
+    if ($attendance->execute()) {
+        $attendance->store_result();
+        if ($attendance->num_rows > 0) {
+            $attendance->bind_result($session_date, $user_state);
+            $student_attendance = [];
+            while ($attendance->fetch()) {
                 if (checkMonth($session_date)) {
-                    $student_attendence[$session_date] = $user_state;
+                    $student_attendance[$session_date] = $user_state;
                 }
             }
-            echo json_encode(['status' => 'OK', 'authenticated' => $authenticated, 'found' => true, 'month' => date('F'), 'attendence' => $student_attendence]);
-            $attendence->close();
+            echo json_encode(['status' => 'OK', 'authenticated' => $authenticated, 'found' => true, 'month' => date('F'), 'attendance' => $student_attendance]);
+            $attendance->close();
             $conn->close();
             exit;
         } else {
             echo json_encode(['status' => 'OK', 'authenticated' => $authenticated, 'found' => false, 'month' => date('F')]);
-            $attendence->close();
+            $attendance->close();
             $conn->close();
             exit;
         }
     } else {
         echo json_encode(['status' => 'error', 'authenticated' => $authenticated, 'message' => 'database error']);
-        $attendence->close();
+        $attendance->close();
         $conn->close();
         exit;
     }

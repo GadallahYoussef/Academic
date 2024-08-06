@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         closeConnections($conn);
         exit;
     }
-    $table_name = 'G' . "$grade" . 'S' . "$section" . "-attendence";
+    $table_name = 'G' . "$grade" . 'S' . "$section" . "_attendance";
     $conn->begin_transaction();
     try {
         $verify = $conn->prepare("SELECT * from classes WHERE grade= ? and section= ?");
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             student_name VARCHAR(100) NOT NULL,
             session_day Date DEFAULT CURRENT_TIMESTAMP NOT NULL,
-            attendence TINYINT(1) NOT NULL
+            attendance TINYINT(1) NOT NULL
             )");
             if ($table->execute()) {
                 $table->close();
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             } else {
                 $table->close();
-                throw new Exception("Failed to make attendence table");
+                throw new Exception("Failed to make attendance table");
             }
         } else {
             $verify->close();
