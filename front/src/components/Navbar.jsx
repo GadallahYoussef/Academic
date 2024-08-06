@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import axios from 'axios';
 import { LuLogOut } from "react-icons/lu";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -7,7 +8,21 @@ import Notifications from './Notifications';
 
 const Navbar = ({toggleMenu, setToggleMenu, handleLogOut}) => {
 
+    const [toggleNotifications, setToggleNotifications] = useState(false)
+    
+    const [found, setFound] = useState(false)
+    const [notifications, setNotifications] = useState([])
 
+    useEffect(() => {
+        const response = axios.post("http://localhost/academic/retrieve_notification.php",{}, {withCredentials: true})
+        .then((res) => (res.data))
+        .then((data) => {
+            setFound(data.found)
+            setNotifications(data.notification)
+        })
+    }, [])
+    
+    
     return (
         <div className='w-full flex justify-center'>
         <div className='h-[60px] flex items-center p-4 justify-between container'>
@@ -30,8 +45,16 @@ const Navbar = ({toggleMenu, setToggleMenu, handleLogOut}) => {
                 </div>
             </div>
             <div className='flex gap-3  items-center relative'>
-                <IoMdNotificationsOutline size={24} className='cursor-pointer' />
-                <Notifications/>
+                <div className='relative flex items-center justify-center'>
+
+                <IoMdNotificationsOutline size={24} className='cursor-pointer' 
+                    onClick={() => setToggleNotifications(!toggleNotifications)}
+                    />
+                
+                {found && <div className='bg-red-600 w-2 h-2 rounded-full absolute right-1 top-1'></div>}
+                </div>
+
+                {toggleNotifications && <Notifications found={found} notifications={notifications}/>}
                 <button className='bg-[#658cc2] ml-5 max-md:ml-1 py-1 px-3 rounded-md text-white flex gap-2 items-center'
                     onClick={() => handleLogOut()}
                     >
