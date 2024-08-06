@@ -8,8 +8,8 @@ import { VscDebugBreakpointLog } from "react-icons/vsc";
 const Schedule = ({name, schedule, grade}) => {
     return (
         <div className='w-full h-full flex'>
-            <div className='w-3/5 flex flex-col justify-center pl-[70px] gap-7'>
-            <h1 className='text-6xl font-bold '>Welcome, <span className=' text-[#054bb4]'>{name.split(' ')[0]}</span></h1>
+            <div className='w-3/5 flex flex-col justify-center lg:pl-[70px] md: pl-[40px] gap-7'>
+            <h1 className='lg:text-6xl md:text-5xl font-bold '>Welcome, <span className=' text-[#054bb4]'>{name.split(' ')[0]}</span></h1>
             <div className='flex flex-col gap-4'>
                 <div className='flex items-center gap-4 bg-[#658cc2] text-white w-fit px-5 py-2 rounded-r-full' >
                     <BsCalendarDateFill size={23} className='text-white'/>
