@@ -27,11 +27,11 @@ if ($authenticated) {
             $schedule_day[] = array($day, $start, $end);
         }
         echo json_encode([
-            'status' => 'OK', 'authenticated' => $authenticated, 'student_name' => $_SESSION['name'], 'student_grade' => $_SESSION['grade'], 'schedule' => $schedule_day
+            'status' => 'OK', 'authenticated' => $authenticated, 'student_name' => $_SESSION['name'], 'student_grade' => $_SESSION['grade'], 'found' => true, 'schedule' => $schedule_day
         ]);
         exit;
     } else {
-        echo json_encode(['status' => 'error', 'authenticated' => $authenticated]);
+        echo json_encode(['status' => 'OK', 'authenticated' => $authenticated, 'student_name' => $_SESSION['name'], 'student_grade' => $_SESSION['grade'], 'found' => false]);
         exit;
     }
     $schedule->close();

@@ -1,5 +1,3 @@
 <?php
-$month = (int)(date('m'));
-echo is_int($month);
-echo '<br>';
-echo $month;
+$pass = 'youssef';
+echo password_hash($pass, PASSWORD_BCRYPT);

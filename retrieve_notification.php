@@ -3,10 +3,11 @@ session_start();
 include('connection.php');
 include('function.php');
 header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:5174");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
+session_get_cookie_params();
 $authenticated = false;
 $continue = check_login($conn);
 if ($continue and $_SESSION['status'] === 'active') {
