@@ -1,7 +1,31 @@
 <?php
 session_start();
-if (isset($_SESSION['user_id'])) {
-    unset($_SESSION['user_id']);
+include('connection.php');
+$logout = $conn->prepare("UPDATE stdssn SET session_id=? WHERE user_id=?");
+$update = NULL;
+$logout->bind_param('ss', $update, $_SESSION['user_id']);
+if ($logout->execute()) {
+    $_SESSION = array();
+    if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(
+            session_name(),
+            '',
+            time() - 42000,
+            $params["path"],
+            $params["domain"],
+            $params["secure"],
+            $params["httponly"]
+        );
+    }
+    session_destroy();
+    $logout->close();
+    $conn->close();
+    echo json_encode(['status' => 'OK', 'message' => 'logged out']);
+    exit;
+} else {
+    $logout->close();
+    $conn->close();
+    echo json_encode(['status' => 'error', 'message' => 'Unexpected error']);
+    exit;
 }
-header('Location: login.php');
-die;
