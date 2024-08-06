@@ -37,7 +37,7 @@ if ($authenticated) {
             $student_attendance = [];
             while ($attendance->fetch()) {
                 if (checkMonth($session_date)) {
-                    $student_attendance[$session_date] = $user_state;
+                    $student_attendance[] = array($session_date, $user_state);
                 }
             }
             echo json_encode(['status' => 'OK', 'authenticated' => $authenticated, 'found' => true, 'month' => date('F') . ', ' . date('Y'), 'attendance' => $student_attendance]);
