@@ -32,7 +32,14 @@ const StudentDashboard = () => {
     }, [])
 
     const handleLogOut = () => {
-        // const response = axios.post("http://localhost/academic/logout.php")
+        const response = axios.post("http://localhost/academic/logout.php")
+        .then((res) => (res.data))
+        .then((data) => {
+            if(data.status == 'OK'){
+                navigate('/login')
+            }
+        })
+        
     }
 
     return (

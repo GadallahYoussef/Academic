@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import  image1  from '../assets/image-1.jpeg'
 import  image4  from '../assets/image-4.jpg'
 import axios from 'axios';
@@ -12,6 +12,17 @@ const LoginPage = () => {
     const [emptyUsername, setEmptyUsername] = useState(false)
     const [emptyPassword, setEmptyPassword] = useState(false)
     const navigate = useNavigate()
+
+    // useEffect(() => {
+    //     const response = axios.post("http://localhost/academic/already_logged.php", {withCredentials: true})
+    //     .then((res) => (res.data))
+    //     .then((data) => {
+    //         if(data.status == 'OK'){
+    //             navigate('/student')
+    //         }
+    //     })
+    // }, [])
+
     const handleLogin = async (e) => {
         try {
             const response = await axios.post("http://localhost/academic/login.php", { username, password }, {withCredentials: true});
@@ -25,6 +36,8 @@ const LoginPage = () => {
             console.error('There was an error logging in!', error);
         }
     };
+
+    
     return (
         <div className='w-screen md:h-screen flex justify-center max-md:py-10 items-center bg-[#658cc2]'>
             <div className='flex w-2/3 md:h-3/4 max-sm:w-5/6 rounded-md max-md:flex-col-reverse'>

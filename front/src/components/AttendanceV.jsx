@@ -27,7 +27,7 @@ const AttendanceV = () => {
                     found && attendance.map((item, index) => {
                         if (index == 0) {
                             return (
-                                <div className='w-full grid grid-cols-3 items-center'>
+                                <div key={index} className='w-full grid grid-cols-3 items-center'>
                                     <div className='text-center'>
                                         <p className='font-bold flex-1 lg:text-[18px] md:text-[12px] text-[#054bb4]'>{item[0]}</p>
                                     </div>
@@ -45,7 +45,7 @@ const AttendanceV = () => {
                         else {
                             if (index == 7) {
                                 return (
-                                    <div className='w-full grid grid-cols-3 items-center'>
+                                    <div key={index} className='w-full grid grid-cols-3 items-center'>
                                         <div className='text-center'>
                                             <p className='font-bold flex-1 lg:text-[18px] md:text-[12px] text-[#054bb4]'></p>
                                         </div>
@@ -62,7 +62,7 @@ const AttendanceV = () => {
                             }
                             else {
                                 return (
-                                    <div className='w-full grid grid-cols-3 justify-center'>
+                                    <div key={index} className='w-full grid grid-cols-3 justify-center'>
                                         <div className='flex items-center text-center'>
                                             <p className='font-bold flex-1 lg:text-[18px] md:text-[12px] text-[#054bb4]'>{index % 2 == 0 && item[0]}</p>
                                         </div>
