@@ -22,20 +22,20 @@ const Tasks = () => {
     return (
         <div className='w-full h-screen '>
             <div className='flex'>
-                <div className='w-2/5'>
+                <div className='w-2/5 max-sm:hidden'>
                     <img src={image6} alt="" className='w-full h-screen  object-cover' />
                 </div>
-                <div className='w-3/5 pl-[40px] pt-[60px] flex flex-col gap-8'>
+                <div className='w-3/5 max-sm:w-full pl-[40px] max-sm:pl-[20px] pt-[60px] flex flex-col gap-8'>
                     <p className='font-extrabold text-[60px] text-[#054bb4]'>Tasks</p>
                     <div className='flex flex-col gap-7'>
                         {
                             found && tasks.map((item, index) => (
                                 <div key={index} className='flex flex-col gap-4'>
-                                    <div className='flex items-center gap-4 bg-[#658cc2] text-white w-fit px-5 py-2 rounded-r-full' >
+                                    <div className='flex items-center gap-4 bg-[#054bb4] text-white w-fit px-5 py-2 rounded-r-full' >
                                         <p className='font-medium text-2xl capitalize'>{item.category}</p>
                                     </div>
                                     <div className='flex items-center pl-5 gap-3'>
-                                        <VscDebugBreakpointLog className='text-[#658cc2]' />
+                                        <VscDebugBreakpointLog className='text-[#054bb4]' />
                                         <p className='text-lg'>{item.task}</p>
                                     </div>
                                 </div>
