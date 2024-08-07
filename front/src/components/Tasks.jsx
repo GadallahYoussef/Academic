@@ -29,10 +29,9 @@ const Tasks = () => {
                     <p className='font-extrabold text-[60px] text-[#054bb4]'>Tasks</p>
                     <div className='flex flex-col gap-7'>
                         {
-                            found && tasks.map((item) => (
-                                <div className='flex flex-col gap-4'>
+                            found && tasks.map((item, index) => (
+                                <div key={index} className='flex flex-col gap-4'>
                                     <div className='flex items-center gap-4 bg-[#658cc2] text-white w-fit px-5 py-2 rounded-r-full' >
-                                        {/* <BsCalendarDateFill size={23} className='text-white' /> */}
                                         <p className='font-medium text-2xl capitalize'>{item.category}</p>
                                     </div>
                                     <div className='flex items-center pl-5 gap-3'>
