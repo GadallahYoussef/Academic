@@ -13,15 +13,15 @@ const LoginPage = () => {
     const [emptyPassword, setEmptyPassword] = useState(false)
     const navigate = useNavigate()
 
-    // useEffect(() => {
-    //     const response = axios.post("http://localhost/academic/already_logged.php", {withCredentials: true})
-    //     .then((res) => (res.data))
-    //     .then((data) => {
-    //         if(data.status == 'OK'){
-    //             navigate('/student')
-    //         }
-    //     })
-    // }, [])
+    useEffect(() => {
+        const response = axios.post("http://localhost/academic/already_logged.php", {withCredentials: true})
+        .then((res) => (res.data))
+        .then((data) => {
+            if(data.status == 'OK'){
+                navigate('/student')
+            }
+        })
+    }, [])
 
     const handleLogin = async (e) => {
         try {
