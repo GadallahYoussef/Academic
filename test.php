@@ -1,2 +1,3 @@
 <?php
-echo date('Y');
+$_SESSION['device_fingerprint'] = getDeviceFingerprint();
+echo $_SESSION['device_fingerprint'];

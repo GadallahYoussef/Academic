@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['grade'] = $grade;
             $_SESSION['section'] = $section;
             $_SESSION['status'] = $status;
+            $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
             setcookie('PHPSESSID', session_id(), time() + 10713600, "/", "", true, true); // Secure and HttpOnly
             // session_regenerate_id(true); // Regenerates the session ID and deletes the old session
             // $multi_sign = $conn->prepare("UPDATE stdssn SET session_id = ? where user_id = ?");

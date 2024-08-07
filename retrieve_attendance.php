@@ -9,8 +9,12 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
 session_get_cookie_params();
 $authenticated = false;
+$allowed_referrer = "http://localhost:5173/";
 $continue = check_login($conn);
-if ($continue and $_SESSION['status'] === 'active') {
+if (
+    $continue and $_SESSION['status'] === 'active' and (isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] === $allowed_referrer)
+    and $_SESSION['user_agent'] === $_SERVER['HTTP_USER_AGENT']
+) {
     $authenticated = true;
 }
 function checkMonth($session_day)

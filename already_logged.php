@@ -7,7 +7,12 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
 session_get_cookie_params();
-if (isset($_SESSION['user_id']) and isset($_SESSION['grade']) and isset($_SESSION['section'])) {
+if (
+    isset($_SESSION['user_id'])
+    and isset($_SESSION['grade'])
+    and isset($_SESSION['section'])
+    and $_SESSION['user_agent'] === $_SERVER['HTTP_USER_AGENT']
+) {
     $user_status = $conn->prepare("SELECT status FROM stdata WHERE user_id=? LIMIT 1");
     $user_status->bind_param('s', $_SESSION['user_id']);
     if ($user_status->execute()) {
