@@ -14,10 +14,10 @@ const LoginPage = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        const response = axios.post("http://localhost/academic/already_logged.php", {withCredentials: true})
+        const response = axios.post("http://localhost/academic/already_logged.php", {}, {withCredentials: true})
         .then((res) => (res.data))
         .then((data) => {
-            if(data.status == 'OK'){
+            if(data.status != 'OK'){
                 navigate('/student')
             }
         })
