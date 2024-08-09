@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { BsCalendarDateFill } from "react-icons/bs";
+import { BsCalendarCheckFill } from "react-icons/bs";
 
 const AttendanceV = () => {
 
@@ -19,8 +19,11 @@ const AttendanceV = () => {
 
     return (
         <div className='w-[full] md:w-[90%] md:hidden top-[50%] flex flex-col items-center   md:bg-opacity-80 rounded-md  p-4 z-50 mt-8'>
-            <div className='flex justify-center'>
-                <p className=' text-3xl text-center font-bold bg-[#054bb4] text-white px-4 py-1 rounded-full'>Attendance</p>
+            <div className='w-full flex justify-center'>
+            <div className='flex items-center justify-center gap-4 bg-[#054bb4] text-white w-fit px-5 py-2 rounded-full' >
+                <BsCalendarCheckFill size={23} className='text-white' />
+                <p className='font-medium text-2xl '>Attendance</p>
+            </div>
             </div>
             <div className='w-[300px] grid grid-rows-8'>
                 {
