@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import  image1  from '../assets/image-1.jpeg'
+import  image1  from '../assets/image-1.jpg'
 import  image4  from '../assets/image-4.jpg'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -13,15 +13,15 @@ const LoginPage = () => {
     const [emptyPassword, setEmptyPassword] = useState(false)
     const navigate = useNavigate()
 
-    useEffect(() => {
-        const response = axios.post("http://localhost/academic/already_logged.php", {}, {withCredentials: true})
-        .then((res) => (res.data))
-        .then((data) => {
-            if(data.status != 'OK'){
-                navigate('/student')
-            }
-        })
-    }, [])
+    // useEffect(() => {
+    //     const response = axios.post("http://localhost/academic/already_logged.php", {}, {withCredentials: true})
+    //     .then((res) => (res.data))
+    //     .then((data) => {
+    //         if(data.status != 'OK'){
+    //             navigate('/student')
+    //         }
+    //     })
+    // }, [])
 
     const handleLogin = async (e) => {
         try {
@@ -40,8 +40,8 @@ const LoginPage = () => {
     
     return (
         <div className='w-screen md:h-screen flex justify-center max-md:py-10 items-center bg-[#658cc2]'>
-            <div className='flex w-2/3 md:h-3/4 max-sm:w-5/6 rounded-md max-md:flex-col-reverse'>
-                <div className='w-full md:w-1/2 h-full bg-white  flex flex-col justify-center md:rounded-l-md max-md:rounded-b-md p-5'>
+            <div className='flex flex-row-reverse w-2/3 md:h-3/4 max-sm:w-5/6 rounded-md max-md:flex-col-reverse'>
+                <div className='w-full md:w-1/2 h-full bg-white  flex flex-col justify-center md:rounded-r-md max-md:rounded-b-md p-5'>
                     <div className='text-center font-bold text-[30px] mb-10'>
                         <h1 className='text-[#054bb4]'>Welcome to Academia</h1>
                     </div>
@@ -74,7 +74,7 @@ const LoginPage = () => {
 
                 </div>
                 <div className='md:w-1/2 w-full md:h-full h-1/3'>
-                    <img src={image1} alt="" className='w-full h-full max-md:hidden rounded-r-md object-cover'/>
+                    <img src={image1} alt="" className='w-full h-full max-md:hidden rounded-l-md object-cover'/>
                     <img src={image4} alt="" className='w-full h-full md:hidden rounded-t-md object-cover'/>
                 </div>
             </div>
