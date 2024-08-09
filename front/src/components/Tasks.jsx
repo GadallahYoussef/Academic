@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import image6 from '../assets/image-6.jpg'
 import { VscDebugBreakpointLog } from "react-icons/vsc";
+import { FaTasks } from "react-icons/fa";
 
 
 const Tasks = () => {
@@ -26,7 +27,10 @@ const Tasks = () => {
                     <img src={image6} alt="" className='w-full h-screen  object-cover' />
                 </div>
                 <div className='w-3/5 max-sm:w-full pl-[40px] max-sm:pl-[20px] pt-[60px] flex flex-col gap-8'>
+                    <div className='flex items-center gap-3'>
+                    <FaTasks size={45} className='text-[#054bb4]'/>
                     <p className='font-extrabold text-[60px] text-[#054bb4]'>Tasks</p>
+                    </div>
                     <div className='flex flex-col gap-7'>
                         {
                             found && tasks.map((item, index) => (

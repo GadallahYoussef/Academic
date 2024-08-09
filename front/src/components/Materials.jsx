@@ -4,6 +4,7 @@ import { IoImage } from "react-icons/io5";
 import { FaFilePdf } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io5";
 import { FaFileAudio } from "react-icons/fa6";
+import { MdLibraryBooks } from "react-icons/md";
 
 
 const Materials = () => {
@@ -21,7 +22,8 @@ const Materials = () => {
 
   return (
     <div className='container py-[70px]'>
-        <div className='w-full flex justify-center mb-[20px]'>
+        <div className='w-full flex items-center justify-center mb-[20px] gap-3'>
+            <MdLibraryBooks size={45} className='text-[#054bb4]' />
             <h1 className='font-extrabold text-[60px] text-[#054bb4]'>Materials</h1>
         </div>
         <div className='grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 max-sm:px-10 gap-5'>
