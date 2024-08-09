@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $generate->bind_result($latest);
                     $generate->fetch();
                     $generate->close();
-                    $suffix = 404 + $latest;
+                    $suffix = 404 + (int)($latest);
                     $student_username = "$first_name" . "_" . $suffix;
                 }
                 $pass = time() % 1000000;
